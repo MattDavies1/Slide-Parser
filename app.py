@@ -30,3 +30,4 @@ for region in regionprops(label_image):
         ax.set_axis_off()
         plt.tight_layout()
         fig.savefig(f'outputs/slide{regionprops(label_image).index(region)}.png')
+        
