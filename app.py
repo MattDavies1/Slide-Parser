@@ -16,18 +16,19 @@ image = rgb2gray(cropped_img)
 thresh = threshold_otsu(image)
 bw = closing(image > thresh, square(3))
 
+# add image labels to identify slides
 label_image = label(bw)
 
-image_label_overlay = label2rgb(label_image, image=image, bg_label=0)
-
+# iterate through objects to output desired selections
 for region in regionprops(label_image):
     # take regions with large enough areas
     if region.area >= 75000:
         # draw rectangle around segmented coins
         minr, minc, maxr, maxc = region.bbox
+        # create output figure
         fig, ax = plt.subplots(figsize=(12, 4))
         plt.imshow(cropped_img[minr:maxr,minc:maxc])
         ax.set_axis_off()
         plt.tight_layout()
+        # save to outputs
         fig.savefig(f'outputs/slide{regionprops(label_image).index(region)}.png')
-        
