@@ -9,16 +9,16 @@ from skimage.color import rgb2gray
 import os
 import glob
 
-
-
+# Take input from user to name files
+file_root_name = input("Input Sample Name: ")
 
 # Smarter Image read-in functioinality
 path = os.path.join('inputs', '*.jpg')
-
 filepath = glob.glob(path)
 filepath
 
-image = image.imread(filepath[0])
+# Load image
+image = image.imread(filepath[0]) # <-- select fine number
 start_image = image
 print("Image loaded")
 
@@ -42,8 +42,8 @@ for region in regionprops(label_image):
         ax.set_axis_off()
         plt.tight_layout()
         # plt.show()
-        fig.savefig(f'outputs/output{counter + 1}.png')
+        fig.savefig(f'outputs/{file_root_name}_{counter + 1}.png')
         print(f'Parsing slide {counter + 1} ...')
         counter += 1
 
-print(f'Parser identified {counter} slides')
+print(f'Parse Completed: {counter} slides identified')
