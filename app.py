@@ -18,7 +18,7 @@ filepath = glob.glob(path)
 filepath
 
 # Load image
-image = image.imread(filepath[0]) # <-- select fine number
+image = image.imread(filepath[0]) # <-- select file number
 start_image = image
 print("Image loaded")
 
