@@ -1,4 +1,4 @@
-# Dependancies
+# Dependencies
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from matplotlib import image
