@@ -4,7 +4,7 @@ Nice to Have:
 
 - tunable sensitivity for box size.
 Preview Boxes: 
-- Preview the edges of thresholding
+- Preview the edges of thresholding --DONE
 
 
 Needed:
