@@ -2,25 +2,33 @@
 
 Nice to Have: 
 
+- tunable sensitivity for box size.
 Preview Boxes: 
 - Preview the edges of thresholding
 
 
 Needed:
 
-- Image box recoginition made relative so that it determines to the size of the image
+- Image box recoginition made relative so that it determines to the size of the image -DONE
 
 - Executable - SINA
 
 - Scaling of gui -  Sina
-- Parse button needs functionality - Sina
-- Output Functionality - Sina
-- relative position of gui - Sina
+- Parse button needs functionality - Sina --DONE
+- Output Functionality - Sina --DONE
+- relative position of gui - Matt
 - READ ME
-- Check Input and Output are not the same directorty
+- Check Input and Output are not the same directorty -Matt
+- Message box for errors of non selection - Sina
+
 
 Future:
 - ignore slides
+
+
+Issue:
+- Running Thread to close -> tkinter thread - Sina
+- Box recognition has max size issue - Matt
 
 
 Lab -> Cancer 
@@ -51,3 +59,13 @@ preview_parsing:
     "Inputs":{"file_location_input":"C:.///"}
     "Outputs":{"labelled_preview_imgae": array}
 }
+
+
+
+
+
+
+message box: 
+from tkinter import messagebox
+
+messagebox.showerror("Title", "Message")

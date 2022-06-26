@@ -1,4 +1,5 @@
+*.pyc
 env/
 model/model_workbook.ipynb
-*.pyc
+view/__pycache__/gui.cpython-310.pyc
 
