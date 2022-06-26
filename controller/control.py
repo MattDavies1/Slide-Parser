@@ -1,19 +1,26 @@
-from 1-model.labeler import * (actual names)
-from 1-model.parser import * (actual names)
+from model.labeler import preview_labling
+from model.parser import slide_parsing_routine
 
-def pass_input_name():
-    return
+def preview_parsing(file_location_input):
+    """
+    ...
+    """
+    # layup 
 
-def input_file():
-    return
+    output = preview_labling(file_location_input)
+    return output
 
-def output_folder():
-    return
+def parse_file(file_location_input: str, folder_location_output: str, input_sample_name: str):
+    """
+    ...
+    """
+    # layup
 
-def preview_img():
-    pass_input_name
-    return
+    output = slide_parsing_routine(file_location_input, folder_location_output, input_sample_name)
+    return output
 
-def parse_sample_img():
-    pass_input_name
+def choose_input_file():
+    """
+    ...
+    """
     return
