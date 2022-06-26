@@ -33,7 +33,7 @@ I need you to have a image location -> image_location -> preview image
 
 {
     "Inputs":{"file_location_input":"C:.///"}
-    "Outputs":{"PreviewImage": Object}
+    "Outputs":{"preview_image": Object}
 }
 
 parse_file:
@@ -48,5 +48,5 @@ preview_parsing:
 
 {
     "Inputs":{"file_location_input":"C:.///"}
-    "Outputs":{"LabeledPreviewImage": array}
+    "Outputs":{"labelled_preview_imgae": array}
 }
