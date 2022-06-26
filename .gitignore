@@ -1,2 +1,4 @@
 env/
 model/model_workbook.ipynb
+*.pyc
+
