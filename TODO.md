@@ -17,6 +17,7 @@ Needed:
 - Output Functionality - Sina
 - relative position of gui - Sina
 - READ ME
+- Check Input and Output are not the same directorty
 
 Future:
 - ignore slides
