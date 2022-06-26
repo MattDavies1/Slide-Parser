@@ -9,14 +9,14 @@ Preview Boxes:
 
 Needed:
 
-- Image box recoginition made relative so that it determines to the size of the image -DONE
+- Image box recoginition made relative so that it determines to the size of the image -Matt -DONE
 
 - Executable - SINA
 
 - Scaling of gui -  Sina
 - Parse button needs functionality - Sina --DONE
 - Output Functionality - Sina --DONE
-- relative position of gui - Matt
+- relative position of gui - Matt -DONE
 - READ ME
 - Check Input and Output are not the same directorty -Matt
 - Message box for errors of non selection - Sina
