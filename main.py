@@ -51,12 +51,10 @@ class GUI(Frame):
         self.input_text = Entry(inputFrame)
         self.input_text.pack()
 
-        selectInput = Button(inputFrame, text="Choose...", command=self.choose)
+        selectInput = Button(inputFrame, text="Choose...", command=self.chooseInputFile)
         selectInput.pack()
 
-
         # Output
-
         outputFrame = Frame(frame3, relief=GROOVE, borderwidth = 1)
         outputFrame.pack(side=RIGHT, fill=BOTH, anchor=E, expand=1)
 
@@ -81,13 +79,9 @@ class GUI(Frame):
         parseButton = Button(frame4, text="Parse!")
         parseButton.pack()
 
-        
-    
-
-
     ########## Functions ##########
     # Pull photo, resize, and display in the App. Refers to self.label
-    def choose(self):
+    def chooseInputFile(self):
         ifile = filedialog.askopenfile(parent=self,mode='rb',title='Choose a file')
         # set width of scaled img
         basewidth = 420
@@ -104,15 +98,12 @@ class GUI(Frame):
         self.image2 = ImageTk.PhotoImage(img)
         self.label.configure(image=self.image2)
         self.label.image=self.image2
-
     
-    def chooseOutput(self):
+    def chooseOutputFolder(self):
         print(self.outputText)
         # self.output_text.delete(0, END)
         # self.output_text.insert(0, text)
         
-
-
 def main():
     root = Tk()
     root.geometry("700x700")
