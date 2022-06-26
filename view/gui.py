@@ -34,8 +34,8 @@ class GUI(Frame):
         lbl2 = Label(frame2, text="Sample Name: ")
         lbl2.pack(side=LEFT, anchor=N, padx=5, pady=5)
 
-        sampleName = Entry(frame2)
-        sampleName.pack(side=LEFT, anchor=N, padx=5, pady=5)
+        self.sampleName = Entry(frame2)
+        self.sampleName.pack(side=LEFT, anchor=N, padx=5, pady=5)
 
         # Input and Output Selector
 
@@ -115,4 +115,7 @@ class GUI(Frame):
 
     def startParsingImage(self):
         print("Started Parsing Image")
-        parse_file()
+        inputfile_location = self.input_text.get()
+        outputfolder_location = self.outputText.get()
+        outputfile_name = self.sampleName.get()
+        parse_file(inputfile_location,outputfolder_location,outputfile_name)
