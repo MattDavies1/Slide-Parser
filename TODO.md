@@ -19,7 +19,7 @@ Needed:
 - relative position of gui - Matt -DONE
 - READ ME
 - Check Input and Output are not the same directorty -Matt
-- Message box for errors of non selection - Sina
+- Message box for errors of non selection - Sina --Done
 
 
 Future:
@@ -27,8 +27,9 @@ Future:
 
 
 Issue:
-- Running Thread to close -> tkinter thread - Sina
+- Running Thread to close -> tkinter thread - Sina --Done
 - Box recognition has max size issue - Matt
+- GUI Hangs while parsing -> create a new thread or have a timer to stop the parse. -Matt and Sina discuss 
 
 
 Lab -> Cancer 
@@ -65,7 +66,4 @@ preview_parsing:
 
 
 
-message box: 
-from tkinter import messagebox
-
-messagebox.showerror("Title", "Message")
+m
