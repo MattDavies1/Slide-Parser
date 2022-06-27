@@ -1,37 +1,44 @@
 # TODO
 
-Nice to Have: 
+## Nice to Have: 
 
-- tunable sensitivity for box size.
-Preview Boxes: 
-- Preview the edges of thresholding --DONE
-
-
-Needed:
-
-- Image box recoginition made relative so that it determines to the size of the image -Matt -DONE
-
-- Executable - SINA
-
-- Scaling of gui -  Sina
-- Parse button needs functionality - Sina --DONE
-- Output Functionality - Sina --DONE
-- relative position of gui - Matt -DONE
-- READ ME
-- Check Input and Output are not the same directorty -Matt
-- Message box for errors of non selection - Sina --Done
+* [ ] tunable sensitivity for box size. 
+* [X] Preview the edges of thresholding --DONE
 
 
-Future:
-- ignore slides
+
+## Required To Have:
+### Sina
+
+- [ ] Executable - SINA
+- [ ] Scaling of gui -  Sina
+- [X] Parse button needs functionality - Sina --DONE
+- [X] Output Functionality - Sina --DONE
+- [X] Message box for errors of non selection - Sina --Done
+
+### Matt
+- [X] Image box recoginition made relative so that it determines to the size of the image -Matt -DONE
+- [X] relative position of gui - Matt -DONE
+- [ ] Check Input and Output are not the same directorty -Matt
 
 
-Issue:
-- Running Thread to close -> tkinter thread - Sina --Done
-- Box recognition has max size issue - Matt
-- GUI Hangs while parsing -> create a new thread or have a timer to stop the parse. -Matt and Sina discuss 
+
+## Future Improvements:
+- [ ] ignore slides
 
 
+## Issues:
+
+### Sina
+- [X] Running Thread to close -> tkinter thread - Sina --Done
+### Matt
+- [ ] Box recognition has max size issue - Matt
+
+### Unassigned
+- [ ] GUI Hangs while parsing -> create a new thread or have a timer to stop the parse. -Matt and Sina discuss 
+
+
+## Notes
 Lab -> Cancer 
 tissue sample on praphine -> hepatology
 
