@@ -1,6 +1,9 @@
+from multiprocessing.sharedctypes import Value
 from tkinter import *
-from PIL import  Image,ImageTk
-from tkinter import filedialog
+from PIL import  Image,ImageTk, UnidentifiedImageError
+from tkinter import filedialog, messagebox
+
+from pyparsing import Or
 from controller.control import *
 
 
@@ -49,8 +52,9 @@ class GUI(Frame):
         lbl5 = Label(inputFrame, text="Input")
         lbl5.pack(side=LEFT, anchor=N, padx=5, pady=5)
 
-        self.input_text = Entry(inputFrame)
-        self.input_text.pack()
+        self.inputText = StringVar()
+        input_text = Entry(inputFrame, text=self.inputText)
+        input_text.pack()
 
         selectInput = Button(inputFrame, text="Choose...", command=self.chooseInputFile)
         selectInput.pack()
@@ -83,39 +87,67 @@ class GUI(Frame):
     ########## Functions ##########
     # Pull photo, resize, and display in the App. Refers to self.label
     def chooseInputFile(self):
+        
         ifile = filedialog.askopenfile(parent=self,mode='rb',title='Choose a file')
-        # set width of scaled img
-        basewidth = 420
-        start = str(ifile).find("name='")
-        file_location = str(ifile)[start+6:-2]
-        self.input_text.insert(0, file_location)
-        # open img
-        img = Image.open(ifile)
-        # resize using img dimensions
-        wpercent = (basewidth/float(img.size[0]))
-        hsize = int((float(img.size[1])*float(wpercent)))
-        img = img.resize((basewidth,hsize), Image.ANTIALIAS)
-        # reset img variable
-        self.image2 = ImageTk.PhotoImage(img)
-        self.label.configure(image=self.image2)
-        self.label.image=self.image2
+        if ifile == None:
+            messagebox.showerror("No Selection", "Please select a file!")
+        else:
+            try:
+                # set width of scaled img
+                basewidth = 420
+                start = str(ifile).find("name='")
+                file_location = str(ifile)[start+6:-2]
+                self.inputText.set(file_location)
+                # open img
+                img = Image.open(ifile)
+                # resize using img dimensions
+                wpercent = (basewidth/float(img.size[0]))
+                hsize = int((float(img.size[1])*float(wpercent)))
+                img = img.resize((basewidth,hsize), Image.ANTIALIAS)
+                # reset img variable
+                self.image2 = ImageTk.PhotoImage(img)
+                self.label.configure(image=self.image2)
+                self.label.image=self.image2
+            except UnidentifiedImageError as imageerr:
+                print("check file type")
+                messagebox.showerror("Image File Issue", "The input file was not entered or does not point to a jpg image!")
     
     def chooseOutputFolder(self):
-        self.outputText.set(filedialog.askdirectory(parent=self,mustexist=True,title='Choose a folder'))
-        print(self.outputText.get())
+        ofile = filedialog.askdirectory(parent=self,mustexist=True,title='Choose a folder')
+        if ofile == None:
+            messagebox.showerror("No Selection", "Please select a file!")
+        else:
+            self.outputText.set(ofile)
+            print(self.outputText.get())
 
     def showPreviewParser(self):
-        print("Show Preview Selected!")
-        img = preview_parsing(self.input_text.get())
+        
+        ifile = self.inputText.get()
+        if ifile == None:
+            messagebox.showerror("No Selection", "Please select a file!")
+        else:
+            try:
+                img = preview_parsing(ifile)
 
-        # reset img variable
-        self.image2 = ImageTk.PhotoImage(img)
-        self.label.configure(image=self.image2)
-        self.label.image=self.image2
+                # reset img variable
+                self.image2 = ImageTk.PhotoImage(img)
+                self.label.configure(image=self.image2)
+                self.label.image=self.image2
+            except AttributeError as err:
+                messagebox.showerror("Image File Issue", "The input file was not entered or does not point to a jpg image!")
+            except ValueError as valerr:
+                print("check file type")
+                messagebox.showerror("Image File Issue", "The input file was not entered or does not point to a jpg image!")
+            except UnidentifiedImageError as imageerr:
+                print("check file type")
+                messagebox.showerror("Image File Issue", "The input file was not entered or does not point to a jpg image!")
 
     def startParsingImage(self):
-        print("Started Parsing Image")
-        inputfile_location = self.input_text.get()
+        
+        inputfile_location = self.inputText.get()
         outputfolder_location = self.outputText.get()
         outputfile_name = self.sampleName.get()
-        parse_file(inputfile_location,outputfolder_location,outputfile_name)
+        if (inputfile_location == None) or (outputfolder_location == None) or (outputfile_name == None):
+            messagebox.showerror("No Selection", "one or all missing from input file location, output folder location or file name")
+        else:
+            parse_file(inputfile_location,outputfolder_location,outputfile_name)
