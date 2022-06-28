@@ -7,7 +7,17 @@ from controller.control import *
 
 
 class GUI():
+    """Gui class to add the functionality to the root frame
+    """
     def __init__(self, root):
+        """Initialize the general layout of the gui.
+        mainframe is the parent of all widgets after root. 
+        column and row configure is the scaling of the grid layout
+
+        Args:
+            root (Tk): the root object of tkinter -> root = Tk()
+            
+        """
         self.mainframe = ttk.Frame(root, padding="3 3 12 12")
         self.mainframe.grid(column=0, row=0, sticky=(N, S, E, W))
         self.mainframe.columnconfigure(1, weight=0)
@@ -27,6 +37,8 @@ class GUI():
         self.init_widgets()
 
     def init_widgets(self):
+        """initialize all widgets in their default form.
+        """
         #sample name text entry widget
         sample_name_textentry = StringVar()
         feet_entry = ttk.Entry(self.mainframe, width=20, textvariable=sample_name_textentry)
@@ -67,8 +79,13 @@ class GUI():
 
         for child in self.mainframe.winfo_children(): 
             child.grid_configure(padx=5, pady=5)
+    
+    ###Functions###
+    #the triggers of the gui
         
     def choose_input_file(self):
+        """allows the user to choose the image to be loaded into the program. 
+        """
         ifile = filedialog.askopenfile(parent=self.mainframe,mode='rb',title='Choose a file')
         if ifile == None:
             messagebox.showerror("No Selection", "Please select a file!")
@@ -94,8 +111,14 @@ class GUI():
                 messagebox.showerror("Image File Issue", "The input file was not entered or does not point to a jpg image!")
 
     def choose_output_folder(self):
+        """allows the user to choose the folder to output the program results.
+        """
         print("choose output file")
     def show_preview_image(self):
+        """previews the input image in parsed format.
+        """
         print("choose preview image")
     def start_parsing_image(self):
+        """runs the parsing algorithm on the input image.
+        """
         print("choose parsing start")
