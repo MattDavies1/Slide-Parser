@@ -40,17 +40,17 @@ class GUI():
         """initialize all widgets in their default form.
         """
         #sample name text entry widget
-        sample_name_textentry = StringVar()
-        feet_entry = ttk.Entry(self.mainframe, width=20, textvariable=sample_name_textentry)
-        feet_entry.grid(column=2, row=2, sticky=(W, E))
+        self.sample_name_textentry = StringVar()
+        sample_name_textentry = ttk.Entry(self.mainframe, width=20, textvariable=self.sample_name_textentry)
+        sample_name_textentry.grid(column=2, row=2, sticky=(W, E))
         
         sample_name_label = ttk.Label(self.mainframe, text="Sample Name")
         sample_name_label.grid(column=1, row=2, sticky=(E,W))
 
         #Input Location text entry widget
         self.input_location_textentry = StringVar()
-        feet_entry = ttk.Entry(self.mainframe, width=20, textvariable=self.input_location_textentry)
-        feet_entry.grid(column=2, row=3, sticky=(W, E))
+        input_location_textentry = ttk.Entry(self.mainframe, width=20, textvariable=self.input_location_textentry)
+        input_location_textentry.grid(column=2, row=3, sticky=(W, E))
         
         ttk.Label(self.mainframe, text="Input").grid(column=1, row=3, sticky=(E,W))
         self.choose_input_loc_button = ttk.Button(self.mainframe, text="...", command=self.choose_input_file)
@@ -58,8 +58,8 @@ class GUI():
 
         #Output Location text entry widget
         self.output_location_textentry = StringVar()
-        feet_entry = ttk.Entry(self.mainframe, width=20, textvariable=self.output_location_textentry)
-        feet_entry.grid(column=5, row=3, sticky=(W, E))
+        output_location_textentry = ttk.Entry(self.mainframe, width=20, textvariable=self.output_location_textentry)
+        output_location_textentry.grid(column=5, row=3, sticky=(W, E))
         
         ttk.Label(self.mainframe, text="Output").grid(column=4, row=3, sticky=(E,W))
         self.choose_output_loc_button = ttk.Button(self.mainframe, text="...", command=self.choose_output_folder)
@@ -117,8 +117,8 @@ class GUI():
         if ofile == None:
             messagebox.showerror("No Selection", "Please select a file!")
         else:
-            self.outputText.set(ofile)
-            print(self.outputText.get())
+            self.output_location_textentry.set(ofile)
+            print(self.output_location_textentry.get())
 
     def show_preview_image(self):
         """previews the input image in parsed format.
