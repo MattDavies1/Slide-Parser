@@ -1,6 +1,10 @@
 from tkinter import *
 from view.gui import GUI
+import sys
 
+def destroy():
+    print("destroying")
+    sys.exit()
         
 def main():
     try:
@@ -8,8 +12,9 @@ def main():
         root.title('Slide Parser')
         
         app = GUI(root)
-        root.mainloop()
-    
+        app.root.protocol("WM_DELETE_WINDOW", destroy)
+        app.root.mainloop()
+ 
     except Exception as err:
         print(err)
 if __name__ == '__main__':

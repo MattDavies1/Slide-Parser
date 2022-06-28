@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import filedialog, messagebox
 from tkinter import ttk
 from PIL import Image, ImageTk, UnidentifiedImageError
+import sys
 
 from controller.control import *
 
@@ -18,7 +19,8 @@ class GUI():
             root (Tk): the root object of tkinter -> root = Tk()
             
         """
-        self.mainframe = ttk.Frame(root, padding="3 3 12 12")
+        self.root = root
+        self.mainframe = ttk.Frame(self.root, padding="3 3 12 12")
         self.mainframe.grid(column=0, row=0, sticky=(N, S, E, W))
         self.mainframe.columnconfigure(1, weight=0)
         self.mainframe.columnconfigure(2, weight=1)
@@ -30,9 +32,9 @@ class GUI():
         self.mainframe.rowconfigure(2, weight=0)
         self.mainframe.rowconfigure(3, weight=0)
         self.mainframe.rowconfigure(4, weight=0)
-        root.columnconfigure(0, weight=1)
-        root.rowconfigure(0, weight=1)
-        root.minsize(400,300)
+        self.root.columnconfigure(0, weight=1)
+        self.root.rowconfigure(0, weight=1)
+        self.root.minsize(400,300)
 
         self.init_widgets()
 
@@ -109,6 +111,7 @@ class GUI():
             except UnidentifiedImageError as imageerr:
                 print("check file type")
                 messagebox.showerror("Image File Issue", "The input file was not entered or does not point to a jpg image!")
+        
 
     def choose_output_folder(self):
         """allows the user to choose the folder to output the program results.
@@ -120,6 +123,7 @@ class GUI():
         else:
             self.output_location_textentry.set(ofile)
             print(self.output_location_textentry.get())
+        
 
     def show_preview_image(self):
         """previews the input image in parsed format.
@@ -143,8 +147,22 @@ class GUI():
             except UnidentifiedImageError as imageerr:
                 print("check file type")
                 messagebox.showerror("Image File Issue", "The input file was not entered or does not point to a jpg image!")
+        
 
     def start_parsing_image(self):
         """runs the parsing algorithm on the input image.
         """
-        print("choose parsing start")
+        inputfile_location = self.input_location_textentry.get()
+        outputfolder_location = self.output_location_textentry.get()
+        outputfile_name = self.sample_name_textentry.get()
+        if (inputfile_location == None) or (outputfolder_location == None) or (outputfile_name == None):
+            messagebox.showerror("No Selection", "one or all missing from input file location, output folder location or file name")
+        else:
+            parse_file(inputfile_location,outputfolder_location,outputfile_name)
+        
+        
+    
+    def _check_window_state(self):
+        print(self.root.state())
+        if self.root.state() != 'normal':
+            sys.exit(0)
