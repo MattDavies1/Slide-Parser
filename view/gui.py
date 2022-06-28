@@ -22,6 +22,7 @@ class GUI():
         self.mainframe.rowconfigure(4, weight=0)
         root.columnconfigure(0, weight=1)
         root.rowconfigure(0, weight=1)
+        root.minsize(400,300)
 
         self.init_widgets()
 
