@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import filedialog, messagebox
 from tkinter import ttk
-from PIL import Image, ImageTk
+from PIL import Image, ImageTk, UnidentifiedImageError
 
 from controller.control import *
 
@@ -91,7 +91,7 @@ class GUI():
                 image = ImageTk.PhotoImage(img)
                 self.image_label.configure(image=image)
                 self.image_label.image = image
-            except ttk.UnidentifiedImageError as imageerr:
+            except UnidentifiedImageError as imageerr:
                 print("check file type")
                 messagebox.showerror("Image File Issue", "The input file was not entered or does not point to a jpg image!")
 
