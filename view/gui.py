@@ -1,5 +1,7 @@
 from tkinter import *
+from tkinter import filedialog, messagebox
 from tkinter import ttk
+from PIL import Image, ImageTk
 
 from controller.control import *
 
@@ -58,13 +60,20 @@ class GUI():
         self.parse_button = ttk.Button(self.mainframe, text="parse", command=self.show_preview_image)
         self.parse_button.grid(columnspan=4, column=4,row=4, sticky=(E,W))
 
+        # image widget    
+        self.sample_image_PhotoImage = Image.open('./test/outputs/Black-test_1.png')
+        photo = ImageTk.PhotoImage(self.sample_image_PhotoImage)
+        self.image_label = Label(self.mainframe, image = photo)
+        self.image_label.image = photo
+        self.image_label.grid(column=1, row=1, columnspan=6, sticky=(N,S,E,W))
+
         for child in self.mainframe.winfo_children(): 
             child.grid_configure(padx=5, pady=5)
         
     def choose_input_file(self):
-        ifile = ttk.filedialog.askopenfile(parent=self,mode='rb',title='Choose a file')
+        ifile = filedialog.askopenfile(parent=self.mainframe,mode='rb',title='Choose a file')
         if ifile == None:
-            ttk.messagebox.showerror("No Selection", "Please select a file!")
+            messagebox.showerror("No Selection", "Please select a file!")
         else:
             try:
                 # set width of scaled img
@@ -79,12 +88,12 @@ class GUI():
                 hsize = int((float(img.size[1])*float(wpercent)))
                 img = img.resize((basewidth,hsize), Image.ANTIALIAS)
                 # reset img variable
-                self.image2 = ttk.ImageTk.PhotoImage(img)
-                self.label.configure(image=self.image2)
-                self.label.image=self.image2
+                image = ImageTk.PhotoImage(img)
+                self.image_label.configure(image=image)
+                self.image_label.image = image
             except ttk.UnidentifiedImageError as imageerr:
                 print("check file type")
-                ttk.messagebox.showerror("Image File Issue", "The input file was not entered or does not point to a jpg image!")
+                messagebox.showerror("Image File Issue", "The input file was not entered or does not point to a jpg image!")
 
     def choose_output_folder(self):
         print("choose output file")
