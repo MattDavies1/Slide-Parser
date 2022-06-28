@@ -113,7 +113,13 @@ class GUI():
     def choose_output_folder(self):
         """allows the user to choose the folder to output the program results.
         """
-        print("choose output file")
+        ofile = filedialog.askdirectory(parent=self.mainframe,mustexist=True,title='Choose a folder')
+        if ofile == None:
+            messagebox.showerror("No Selection", "Please select a file!")
+        else:
+            self.outputText.set(ofile)
+            print(self.outputText.get())
+
     def show_preview_image(self):
         """previews the input image in parsed format.
         """
