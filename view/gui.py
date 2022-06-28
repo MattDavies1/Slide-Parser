@@ -62,7 +62,30 @@ class GUI():
             child.grid_configure(padx=5, pady=5)
         
     def choose_input_file(self):
-        print("choose input file")
+        ifile = ttk.filedialog.askopenfile(parent=self,mode='rb',title='Choose a file')
+        if ifile == None:
+            ttk.messagebox.showerror("No Selection", "Please select a file!")
+        else:
+            try:
+                # set width of scaled img
+                basewidth = 420
+                start = str(ifile).find("name='")
+                file_location = str(ifile)[start+6:-2]
+                self.input_location_textentry.set(file_location)
+                # open img
+                img = Image.open(ifile)
+                # resize using img dimensions
+                wpercent = (basewidth/float(img.size[0]))
+                hsize = int((float(img.size[1])*float(wpercent)))
+                img = img.resize((basewidth,hsize), Image.ANTIALIAS)
+                # reset img variable
+                self.image2 = ttk.ImageTk.PhotoImage(img)
+                self.label.configure(image=self.image2)
+                self.label.image=self.image2
+            except ttk.UnidentifiedImageError as imageerr:
+                print("check file type")
+                ttk.messagebox.showerror("Image File Issue", "The input file was not entered or does not point to a jpg image!")
+
     def choose_output_folder(self):
         print("choose output file")
     def show_preview_image(self):
