@@ -66,11 +66,11 @@ class GUI():
         self.choose_output_loc_button.grid(column=6, row=3, sticky=(E,W))
 
         # parsing button widget
-        self.preview_button = ttk.Button(self.mainframe, text="preview", command=self.start_parsing_image)
+        self.preview_button = ttk.Button(self.mainframe, text="parse", command=self.start_parsing_image)
         self.preview_button.grid(columnspan=3, column=1, row=4, sticky=(E,W))
 
         # preview button widget
-        self.parse_button = ttk.Button(self.mainframe, text="parse", command=self.show_preview_image)
+        self.parse_button = ttk.Button(self.mainframe, text="preview", command=self.show_preview_image)
         self.parse_button.grid(columnspan=4, column=4,row=4, sticky=(E,W))
 
         # image widget    
@@ -114,7 +114,8 @@ class GUI():
         """allows the user to choose the folder to output the program results.
         """
         ofile = filedialog.askdirectory(parent=self.mainframe,mustexist=True,title='Choose a folder')
-        if ofile == None:
+        
+        if ofile == None or ofile == '':
             messagebox.showerror("No Selection", "Please select a file!")
         else:
             self.output_location_textentry.set(ofile)
@@ -123,7 +124,26 @@ class GUI():
     def show_preview_image(self):
         """previews the input image in parsed format.
         """
-        print("choose preview image")
+        ifile = self.input_location_textentry.get()
+        if ifile == None:
+            messagebox.showerror("No Selection", "Please select a file!")
+        else:
+            try:
+                img = preview_parsing(ifile)
+
+                # reset img variable
+                image = ImageTk.PhotoImage(img)
+                self.image_label.configure(image=image)
+                self.image_label.image=image
+            except AttributeError as err:
+                messagebox.showerror("Image File Issue", "The input file was not entered or does not point to a jpg image!")
+            except ValueError as valerr:
+                print("check file type")
+                messagebox.showerror("Image File Issue", "The input file was not entered or does not point to a jpg image!")
+            except UnidentifiedImageError as imageerr:
+                print("check file type")
+                messagebox.showerror("Image File Issue", "The input file was not entered or does not point to a jpg image!")
+
     def start_parsing_image(self):
         """runs the parsing algorithm on the input image.
         """
