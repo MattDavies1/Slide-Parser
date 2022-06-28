@@ -61,10 +61,7 @@ class GUI():
         self.parse_button.grid(columnspan=4, column=4,row=4, sticky=(E,W))
 
         # image widget    
-        self.sample_image_PhotoImage = Image.open('./test/outputs/Black-test_1.png')
-        photo = ImageTk.PhotoImage(self.sample_image_PhotoImage)
-        self.image_label = Label(self.mainframe, image = photo)
-        self.image_label.image = photo
+        self.image_label = Label(self.mainframe)
         self.image_label.grid(column=1, row=1, columnspan=6, sticky=(N,S,E,W))
 
         for child in self.mainframe.winfo_children(): 
