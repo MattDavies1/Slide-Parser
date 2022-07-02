@@ -1,94 +1,94 @@
-from multiprocessing.sharedctypes import Value
 from tkinter import *
-from PIL import  Image,ImageTk, UnidentifiedImageError
 from tkinter import filedialog, messagebox
+from tkinter import ttk
+from PIL import Image, ImageTk, UnidentifiedImageError
+import sys
 
-from pyparsing import Or
 from controller.control import *
 
 
-class GUI(Frame):
-    def __init__(self):
-        super().__init__()
-        self.initUI()
+class GUI():
+    """Gui class to add the functionality to the root frame
+    """
+    def __init__(self, root):
+        """Initialize the general layout of the gui.
+        mainframe is the parent of all widgets after root. 
+        column and row configure is the scaling of the grid layout
 
-    def initUI(self):
+        Args:
+            root (Tk): the root object of tkinter -> root = Tk()
+            
+        """
+        self.root = root
+        self.mainframe = ttk.Frame(self.root, padding="3 3 12 12")
+        self.mainframe.grid(column=0, row=0, sticky=(N, S, E, W))
+        self.mainframe.columnconfigure(1, weight=0)
+        self.mainframe.columnconfigure(2, weight=1)
+        self.mainframe.columnconfigure(3, weight=0)
+        self.mainframe.columnconfigure(4, weight=0)
+        self.mainframe.columnconfigure(5, weight=1)
+        self.mainframe.columnconfigure(6, weight=0)
+        self.mainframe.rowconfigure(1, weight=1)
+        self.mainframe.rowconfigure(2, weight=0)
+        self.mainframe.rowconfigure(3, weight=0)
+        self.mainframe.rowconfigure(4, weight=0)
+        self.root.columnconfigure(0, weight=1)
+        self.root.rowconfigure(0, weight=1)
+        self.root.minsize(400,300)
 
-        self.master.title("Slider Parse Bot v0.1")
-        self.pack(fill=BOTH, expand=TRUE)
+        self.init_widgets()
 
-        # Picture Frame
-
-        frame1 = Frame(self, relief=GROOVE, borderwidth = 1)
-        frame1.pack(fill=BOTH, expand=1)
-
-        lbl1 = Label(frame1, text="Sample Picture")
-        lbl1.pack(anchor=N, padx=5, pady=5)
-
-        image = PhotoImage(file='')
-        self.label = Label(frame1, image=image)
-        self.label.pack()
-
-        # Frame for Sample Name input
-
-        frame2 = Frame(self, relief=GROOVE, borderwidth = 1)
-        frame2.pack(fill=BOTH)
-
-        lbl2 = Label(frame2, text="Sample Name: ")
-        lbl2.pack(side=LEFT, anchor=N, padx=5, pady=5)
-
-        self.sampleName = Entry(frame2)
-        self.sampleName.pack(side=LEFT, anchor=N, padx=5, pady=5)
-
-        # Input and Output Selector
-
-        frame3 = Frame(self, relief=GROOVE, borderwidth = 1, height=100)
-        frame3.pack(fill=BOTH)
-
-        # Input
-        inputFrame = Frame(frame3, relief=GROOVE, borderwidth = 1)
-        inputFrame.pack(side=LEFT, fill=BOTH, expand=1)\
-
-        lbl5 = Label(inputFrame, text="Input")
-        lbl5.pack(side=LEFT, anchor=N, padx=5, pady=5)
-
-        self.inputText = StringVar()
-        input_text = Entry(inputFrame, text=self.inputText)
-        input_text.pack()
-
-        selectInput = Button(inputFrame, text="Choose...", command=self.chooseInputFile)
-        selectInput.pack()
-
-        # Output
-        outputFrame = Frame(frame3, relief=GROOVE, borderwidth = 1)
-        outputFrame.pack(side=RIGHT, fill=BOTH, anchor=E, expand=1)
-
-        lbl6 = Label(outputFrame, text="Output")
-        lbl6.pack(side=LEFT, anchor=N, padx=5, pady=5)
-
-        self.outputText = StringVar()
-        outputEntry = Entry(outputFrame, text=self.outputText)
-        outputEntry.pack()
-
-        selectOutput = Button(outputFrame, text="Choose...", command=self.chooseOutputFolder)
-        selectOutput.pack()
-
-        # The button!
-
-        frame4 = Frame(self, relief=GROOVE, borderwidth = 1, height=50)
-        frame4.pack(fill=BOTH)
-
-        previewButton = Button(frame4, text="Preview", command=self.showPreviewParser)
-        previewButton.pack()
-
-        parseButton = Button(frame4, text="Parse!", command=self.startParsingImage)
-        parseButton.pack()
-
-    ########## Functions ##########
-    # Pull photo, resize, and display in the App. Refers to self.label
-    def chooseInputFile(self):
+    def init_widgets(self):
+        """initialize all widgets in their default form.
+        """
+        #sample name text entry widget
+        self.sample_name_textentry = StringVar()
+        sample_name_textentry = ttk.Entry(self.mainframe, width=20, textvariable=self.sample_name_textentry)
+        sample_name_textentry.grid(column=2, row=2, sticky=(W, E))
         
-        ifile = filedialog.askopenfile(parent=self,mode='rb',title='Choose a file')
+        sample_name_label = ttk.Label(self.mainframe, text="Sample Name")
+        sample_name_label.grid(column=1, row=2, sticky=(E,W))
+
+        #Input Location text entry widget
+        self.input_location_textentry = StringVar()
+        input_location_textentry = ttk.Entry(self.mainframe, width=20, textvariable=self.input_location_textentry)
+        input_location_textentry.grid(column=2, row=3, sticky=(W, E))
+        
+        ttk.Label(self.mainframe, text="Input").grid(column=1, row=3, sticky=(E,W))
+        self.choose_input_loc_button = ttk.Button(self.mainframe, text="...", command=self.choose_input_file)
+        self.choose_input_loc_button.grid(column=3, row=3, sticky=(E,W))
+
+        #Output Location text entry widget
+        self.output_location_textentry = StringVar()
+        output_location_textentry = ttk.Entry(self.mainframe, width=20, textvariable=self.output_location_textentry)
+        output_location_textentry.grid(column=5, row=3, sticky=(W, E))
+        
+        ttk.Label(self.mainframe, text="Output").grid(column=4, row=3, sticky=(E,W))
+        self.choose_output_loc_button = ttk.Button(self.mainframe, text="...", command=self.choose_output_folder)
+        self.choose_output_loc_button.grid(column=6, row=3, sticky=(E,W))
+
+        # parsing button widget
+        self.preview_button = ttk.Button(self.mainframe, text="parse", command=self.start_parsing_image)
+        self.preview_button.grid(columnspan=3, column=1, row=4, sticky=(E,W))
+
+        # preview button widget
+        self.parse_button = ttk.Button(self.mainframe, text="preview", command=self.show_preview_image)
+        self.parse_button.grid(columnspan=4, column=4,row=4, sticky=(E,W))
+
+        # image widget    
+        self.image_label = Label(self.mainframe)
+        self.image_label.grid(column=1, row=1, columnspan=6, sticky=(N,S,E,W))
+
+        for child in self.mainframe.winfo_children(): 
+            child.grid_configure(padx=5, pady=5)
+    
+    ###Functions###
+    #the triggers of the gui
+        
+    def choose_input_file(self):
+        """allows the user to choose the image to be loaded into the program. 
+        """
+        ifile = filedialog.askopenfile(parent=self.mainframe,mode='rb',title='Choose a file')
         if ifile == None:
             messagebox.showerror("No Selection", "Please select a file!")
         else:
@@ -97,7 +97,7 @@ class GUI(Frame):
                 basewidth = 420
                 start = str(ifile).find("name='")
                 file_location = str(ifile)[start+6:-2]
-                self.inputText.set(file_location)
+                self.input_location_textentry.set(file_location)
                 # open img
                 img = Image.open(ifile)
                 # resize using img dimensions
@@ -105,24 +105,30 @@ class GUI(Frame):
                 hsize = int((float(img.size[1])*float(wpercent)))
                 img = img.resize((basewidth,hsize), Image.ANTIALIAS)
                 # reset img variable
-                self.image2 = ImageTk.PhotoImage(img)
-                self.label.configure(image=self.image2)
-                self.label.image=self.image2
+                image = ImageTk.PhotoImage(img)
+                self.image_label.configure(image=image)
+                self.image_label.image = image
             except UnidentifiedImageError as imageerr:
                 print("check file type")
                 messagebox.showerror("Image File Issue", "The input file was not entered or does not point to a jpg image!")
-    
-    def chooseOutputFolder(self):
-        ofile = filedialog.askdirectory(parent=self,mustexist=True,title='Choose a folder')
-        if ofile == None:
+        
+
+    def choose_output_folder(self):
+        """allows the user to choose the folder to output the program results.
+        """
+        ofile = filedialog.askdirectory(parent=self.mainframe,mustexist=True,title='Choose a folder')
+        
+        if ofile == None or ofile == '':
             messagebox.showerror("No Selection", "Please select a file!")
         else:
-            self.outputText.set(ofile)
-            print(self.outputText.get())
-
-    def showPreviewParser(self):
+            self.output_location_textentry.set(ofile)
+            print(self.output_location_textentry.get())
         
-        ifile = self.inputText.get()
+
+    def show_preview_image(self):
+        """previews the input image in parsed format.
+        """
+        ifile = self.input_location_textentry.get()
         if ifile == None:
             messagebox.showerror("No Selection", "Please select a file!")
         else:
@@ -130,9 +136,9 @@ class GUI(Frame):
                 img = preview_parsing(ifile)
 
                 # reset img variable
-                self.image2 = ImageTk.PhotoImage(img)
-                self.label.configure(image=self.image2)
-                self.label.image=self.image2
+                image = ImageTk.PhotoImage(img)
+                self.image_label.configure(image=image)
+                self.image_label.image=image
             except AttributeError as err:
                 messagebox.showerror("Image File Issue", "The input file was not entered or does not point to a jpg image!")
             except ValueError as valerr:
@@ -141,13 +147,22 @@ class GUI(Frame):
             except UnidentifiedImageError as imageerr:
                 print("check file type")
                 messagebox.showerror("Image File Issue", "The input file was not entered or does not point to a jpg image!")
-
-    def startParsingImage(self):
         
-        inputfile_location = self.inputText.get()
-        outputfolder_location = self.outputText.get()
-        outputfile_name = self.sampleName.get()
+
+    def start_parsing_image(self):
+        """runs the parsing algorithm on the input image.
+        """
+        inputfile_location = self.input_location_textentry.get()
+        outputfolder_location = self.output_location_textentry.get()
+        outputfile_name = self.sample_name_textentry.get()
         if (inputfile_location == None) or (outputfolder_location == None) or (outputfile_name == None):
             messagebox.showerror("No Selection", "one or all missing from input file location, output folder location or file name")
         else:
             parse_file(inputfile_location,outputfolder_location,outputfile_name)
+        
+        
+    
+    def _check_window_state(self):
+        print(self.root.state())
+        if self.root.state() != 'normal':
+            sys.exit(0)
