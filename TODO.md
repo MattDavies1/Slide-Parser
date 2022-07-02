@@ -10,7 +10,7 @@
 ## Required To Have:
 ### Sina
 
-- [ ] Executable - SINA
+- [X] Executable - SINA
 - [X] Scaling of gui -  Sina
 - [X] Parse button needs functionality - Sina --DONE
 - [X] Output Functionality - Sina --DONE
@@ -36,6 +36,12 @@
 - [ ] Box recognition has max size issue - Matt
 
 ### Unassigned
+
+### To Discuss
+- [ ] Icons addition
+- [ ] Theme changes
+- [ ] Install wizard
+- [ ] Run Book and UAT test documents
 
 
 ## Notes
