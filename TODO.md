@@ -11,10 +11,11 @@
 ### Sina
 
 - [ ] Executable - SINA
-- [ ] Scaling of gui -  Sina
+- [X] Scaling of gui -  Sina
 - [X] Parse button needs functionality - Sina --DONE
 - [X] Output Functionality - Sina --DONE
 - [X] Message box for errors of non selection - Sina --Done
+- [ ] Message box for time consuming functions on gui - Sina 
 
 ### Matt
 - [X] Image box recoginition made relative so that it determines to the size of the image -Matt -DONE
@@ -35,7 +36,6 @@
 - [ ] Box recognition has max size issue - Matt
 
 ### Unassigned
-- [ ] GUI Hangs while parsing -> create a new thread or have a timer to stop the parse. -Matt and Sina discuss 
 
 
 ## Notes
