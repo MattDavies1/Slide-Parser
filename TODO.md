@@ -15,7 +15,7 @@
 - [X] Parse button needs functionality - Sina --DONE
 - [X] Output Functionality - Sina --DONE
 - [X] Message box for errors of non selection - Sina --Done
-- [ ] Message box for time consuming functions on gui - Sina 
+- [ ] Message box for time consuming functions on gui - Sina -> will stop program
 
 ### Matt
 - [X] Image box recoginition made relative so that it determines to the size of the image -Matt -DONE
