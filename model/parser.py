@@ -15,6 +15,7 @@ def slide_parsing_routine(file_location_input: str, folder_location_output: str,
     height, width, _ = image_start.shape
     image_area = height * width
     region_min_size_threshold = image_area*threshold_percent_size
+    region_max_size_threshold = image_area*0.9
 
     # apply threshold
     image_bw = rgb2gray(image_start)
@@ -28,7 +29,7 @@ def slide_parsing_routine(file_location_input: str, folder_location_output: str,
 
     for region in regionprops(label_image):
         # take regions with large enough areas
-        if region.area >= region_min_size_threshold:
+        if (region.area >= region_min_size_threshold) & (region.area <= region_max_size_threshold):
             # draw rectangle around segmented coins
             minr, minc, maxr, maxc = region.bbox
             fig, ax = plt.subplots(figsize=(12, 4))
