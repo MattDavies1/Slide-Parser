@@ -2,8 +2,8 @@
 
 ## Nice to Have: 
 
-* [ ] tunable sensitivity for box size. 
-* [X] Preview the edges of thresholding --DONE
+* [ ] tunable sensitivity for box size. -Matt
+* [X] Preview the edges of thresholding -Matt --DONE
 
 
 
@@ -15,7 +15,7 @@
 - [X] Parse button needs functionality - Sina --DONE
 - [X] Output Functionality - Sina --DONE
 - [X] Message box for errors of non selection - Sina --Done
-- [ ] Message box for time consuming functions on gui - Sina -> will stop program
+- [ ] Message box for time consuming functions on gui - Sina -> will stop program -> checked multithread and matplot lib isnt supported
 
 ### Matt
 - [X] Image box recoginition made relative so that it determines to the size of the image -Matt -DONE
@@ -33,7 +33,7 @@
 ### Sina
 - [X] Running Thread to close -> tkinter thread - Sina --Done
 ### Matt
-- [X] Box recognition has max size issue - Matt
+- [ ] Box recognition has max size issue - Matt
 
 ### Unassigned
 
@@ -74,9 +74,3 @@ preview_parsing:
     "Outputs":{"labelled_preview_imgae": array}
 }
 
-
-
-
-
-
-m
