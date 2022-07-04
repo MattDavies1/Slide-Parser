@@ -33,7 +33,7 @@
 ### Sina
 - [X] Running Thread to close -> tkinter thread - Sina --Done
 ### Matt
-- [ ] Box recognition has max size issue - Matt
+- [X] Box recognition has max size issue - Matt
 
 ### Unassigned
 
