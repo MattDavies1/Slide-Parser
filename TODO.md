@@ -4,6 +4,9 @@
 
 * [ ] tunable sensitivity for box size. -Matt
 * [X] Preview the edges of thresholding -Matt --DONE
+* [ ] Scale Image with GUI -> Nice to Have Post Testing 
+* [ ] Normalize Image Size 
+
 
 
 
@@ -17,17 +20,16 @@
 - [X] Message box for errors of non selection - Sina --Done
 - [X] Message box for time consuming functions on gui - Sina -> will stop program -> checked multithread and matplot lib isnt supported -> DW bout it
 - [ ] Implement Directory Difference - Sina
+- [ ] Icons addition -> Will Be Delivered - Sina
+
 
 ### Matt
 - [X] Image box recoginition made relative so that it determines to the size of the image -Matt -DONE
 - [X] relative position of gui - Matt -DONE
 - [X] Check Input and Output are not the same directorty -Matt
 
-
-
 ## Future Improvements:
 - [ ] ignore slides
-
 
 ## Issues:
 
@@ -39,10 +41,10 @@
 ### Unassigned
 
 ### To Discuss
-- [ ] Icons addition
-- [ ] Theme changes
-- [ ] Install wizard
-- [ ] Run Book and UAT test documents
+
+- [X] Theme changes -> 
+- [X] Install wizard -> DW bout it
+- [ ] Run Book
 
 
 ## Notes

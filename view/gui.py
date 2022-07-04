@@ -68,11 +68,11 @@ class GUI():
         self.choose_output_loc_button.grid(column=6, row=3, sticky=(E,W))
 
         # parsing button widget
-        self.preview_button = ttk.Button(self.mainframe, text="parse", command=self.start_parsing_image)
+        self.preview_button = ttk.Button(self.mainframe, text="Parse", command=self.start_parsing_image)
         self.preview_button.grid(columnspan=3, column=1, row=4, sticky=(E,W))
 
         # preview button widget
-        self.parse_button = ttk.Button(self.mainframe, text="preview", command=self.show_preview_image)
+        self.parse_button = ttk.Button(self.mainframe, text="Preview", command=self.show_preview_image)
         self.parse_button.grid(columnspan=4, column=4,row=4, sticky=(E,W))
 
         # image widget    
