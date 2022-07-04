@@ -154,12 +154,17 @@ class GUI():
         """
         inputfile_location = self.input_location_textentry.get()
         outputfolder_location = self.output_location_textentry.get()
-        outputfile_name = self.sample_name_textentry.get()
-        if (inputfile_location == None) or (outputfolder_location == None) or (outputfile_name == None):
-            messagebox.showerror("No Selection", "one or all missing from input file location, output folder location or file name")
-        else:
-            parse_file(inputfile_location,outputfolder_location,outputfile_name)
+        print(is_same_path(inputfile_location, outputfolder_location))
+        if not is_same_path(inputfile_location, outputfolder_location):    
+
+            outputfile_name = self.sample_name_textentry.get()
+            if (inputfile_location == None) or (outputfolder_location == None) or (outputfile_name == None):
+                messagebox.showerror("No Selection", "one or all missing from input file location, output folder location or file name")
+            else:
+                parse_file(inputfile_location,outputfolder_location,outputfile_name)
         
+        else:
+            messagebox.showerror("Same Directory", f"Please choose a different folder path for the input and output images.\nInput path : {inputfile_location}\nOutput path: {outputfolder_location}")
         
     
     def _check_window_state(self):
