@@ -21,7 +21,7 @@ def preview_labling(file_location_input: str):
     height, width, _ = image_start.shape
     image_area = height * width
     region_min_size_threshold = image_area*threshold_percent_size
-    region_max_size_threshold = image_area*0.9
+    region_max_size_threshold = image_area*0.2
 
     # apply threshold
     image_bw = rgb2gray(image_start)
@@ -37,7 +37,7 @@ def preview_labling(file_location_input: str):
 
     # draw boxes on image
     for region in regionprops(label_image):
-        if (region.area >= region_min_size_threshold) & (region.area <= region_max_size_threshold):
+        if (region.area >= region_min_size_threshold) and (region.area <= region_max_size_threshold):
             minr, minc, maxr, maxc = region.bbox
             rect = mpatches.Rectangle((minc, minr), maxc - minc, maxr - minr,
                                     fill=False, edgecolor='red', linewidth=2)

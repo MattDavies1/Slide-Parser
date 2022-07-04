@@ -15,12 +15,13 @@
 - [X] Parse button needs functionality - Sina --DONE
 - [X] Output Functionality - Sina --DONE
 - [X] Message box for errors of non selection - Sina --Done
-- [ ] Message box for time consuming functions on gui - Sina -> will stop program -> checked multithread and matplot lib isnt supported
+- [X] Message box for time consuming functions on gui - Sina -> will stop program -> checked multithread and matplot lib isnt supported -> DW bout it
+- [ ] Implement Directory Difference - Sina
 
 ### Matt
 - [X] Image box recoginition made relative so that it determines to the size of the image -Matt -DONE
 - [X] relative position of gui - Matt -DONE
-- [ ] Check Input and Output are not the same directorty -Matt
+- [X] Check Input and Output are not the same directorty -Matt
 
 
 
@@ -33,7 +34,7 @@
 ### Sina
 - [X] Running Thread to close -> tkinter thread - Sina --Done
 ### Matt
-- [ ] Box recognition has max size issue - Matt
+- [ ] Box recognition has max size issue - Matt 
 
 ### Unassigned
 
