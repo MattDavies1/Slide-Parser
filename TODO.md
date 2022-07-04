@@ -2,8 +2,8 @@
 
 ## Nice to Have: 
 
-* [ ] tunable sensitivity for box size. 
-* [X] Preview the edges of thresholding --DONE
+* [ ] tunable sensitivity for box size. -Matt
+* [X] Preview the edges of thresholding -Matt --DONE
 
 
 
