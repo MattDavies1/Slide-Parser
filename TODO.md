@@ -19,7 +19,7 @@
 - [X] Output Functionality - Sina --DONE
 - [X] Message box for errors of non selection - Sina --Done
 - [X] Message box for time consuming functions on gui - Sina -> will stop program -> checked multithread and matplot lib isnt supported -> DW bout it
-- [ ] Implement Directory Difference - Sina
+- [X] Implement Directory Difference - Sina
 - [ ] Icons addition -> Will Be Delivered - Sina
 
 
