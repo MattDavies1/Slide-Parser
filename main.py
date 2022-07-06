@@ -1,5 +1,6 @@
 from tkinter import *
 from view.gui import GUI
+import os
 import sys
 
 print("Python Code starting")
@@ -12,7 +13,7 @@ def main():
     try:
         root = Tk()
         root.title('Slide Parser')
-        
+        root.iconbitmap('./logo.ico')
         app = GUI(root)
         app.root.protocol("WM_DELETE_WINDOW", destroy)
         app.root.mainloop()

@@ -20,7 +20,7 @@
 - [X] Message box for errors of non selection - Sina --Done
 - [X] Message box for time consuming functions on gui - Sina -> will stop program -> checked multithread and matplot lib isnt supported -> DW bout it
 - [X] Implement Directory Difference - Sina
-- [ ] Icons addition -> Will Be Delivered - Sina
+- [X] Icons addition -> Will Be Delivered - Sina
 
 
 ### Matt

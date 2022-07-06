@@ -8,7 +8,7 @@ a = Analysis(
     ['main.py'],
     pathex=[f'{os.getcwd()}\\env\\Lib\\site-packages'],
     binaries=[],
-    datas=[],
+    datas=[(f'{os.getcwd()}\\view\\Images\\logo.ico','.')],
     hiddenimports=['skimage.filters.thresholding'],
     hookspath=[],
     hooksconfig={},
@@ -36,11 +36,13 @@ exe = EXE(
     upx_exclude=[],
     runtime_tmpdir=None,
     console=False,
+    windowed=True,
     disable_windowed_traceback=False,
     argv_emulation=False,
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+    icon=f'{os.getcwd()}\\view\\Images\\logo.ico',
 )
 
 coll = COLLECT(
@@ -52,4 +54,5 @@ coll = COLLECT(
     upx=True,
     upx_exclude=[],
     name='SlideParser',
+    icon=f'{os.getcwd()}\\view\\Images\\logo.ico',
 )
