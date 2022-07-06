@@ -12,7 +12,7 @@ def main():
     try:
         root = Tk()
         root.title('Slide Parser')
-        
+        root.iconphoto(False, './view/Images/icon.ico') 
         app = GUI(root)
         app.root.protocol("WM_DELETE_WINDOW", destroy)
         app.root.mainloop()
