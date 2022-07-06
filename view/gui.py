@@ -166,6 +166,8 @@ class GUI():
         else:
             messagebox.showerror("Same Directory", f"Please choose a different folder path for the input and output images.\nInput path : {inputfile_location}\nOutput path: {outputfolder_location}")
         
+        messagebox.showinfo("Done", f"Your Image Was Parsed and Placed in: {outputfolder_location}")
+        
     
     def _check_window_state(self):
         print(self.root.state())
